@@ -34,7 +34,7 @@ function countFlips(array) {
 	return {heads: h, tails: t};
 }
 function flipACoin(call) {
-	var response = {call: call, flip:coinFlip(), result:'lose'};
+	var response = {'call': call, 'flip':coinFlip(), 'result':'lose'};
 	if (response.call == response.flip)
 		response.result = 'win';
 	return response;
@@ -59,6 +59,17 @@ app.get('/app/flips/:number', (req, res) => {
 	const flips = coinFlips(req.params.number);
 	res.json({'raw':flips, 'summary':countFlips(flips)});
 });
+
+app.get('/app/flip/call/tails', (req, res) => {
+	const flips = coinFlips(req.params.number);
+	res.json(flipACoin('tails'));
+});
+
+app.get('/app/flip/call/heads', (req, res) => {
+	const flips = coinFlips(req.params.number);
+	res.json(flipACoin('heads'));
+});
+
 // Default response for any other request
 app.use(function(req, res){
     res.status(404).send('404 NOT FOUND')
