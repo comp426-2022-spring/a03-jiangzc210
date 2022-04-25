@@ -11,13 +11,35 @@ const server = app.listen(HTTP_PORT, () => {
 });
 
 //import coin modules
-import {coinFlip, coinFlips, countFlips} from './modules/coin.mjs';
+function coinFlip() {
+	if (Math.floor(Math.random()*2)>=1) {
+			return 'heads';
+		} else {
+			return 'tails';
+		}
+}
+function coinFlips(flips) {
+	let response = new Array(flips);
+	for (let i = 0; i<flips; i++) {
+		response[i] = coinFlip();
+	}
+	return response;
+}
+function countFlips(array) {
+	let t=0, h=0;
+	for (let x = 0; x<array.length; x++)
+		if (array[x] == 'tails')
+			t++;
+		else h++;
+	return {heads: h, tails: t};
+}
+function flipACoin(call) {
+	var response = {call: call, flip:coinFlip(), result:'lose'};
+	if (response.call == response.flip)
+		response.result = 'win';
+	return response;
+}
 
-
-// Default response for any other request
-app.use(function(req, res){
-    res.status(404).send('404 NOT FOUND')
-});
 
 
 app.get('/app/', (req, res) => {
@@ -31,6 +53,11 @@ app.get('/app/', (req, res) => {
 
 app.get('/app/flip/', (req, res) => {
 	res.json({flip:coinFlip()});
+});
+
+// Default response for any other request
+app.use(function(req, res){
+    res.status(404).send('404 NOT FOUND')
 });
 
 

@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "minimist": "^1.2.6"
   },
   "scripts": {
     "start": "node server.js"
@@ -9,7 +10,6 @@
   "description": "[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=7716531&assignment_repo_type=AssignmentRepo) # a03 This assignment will introduce creating APIs using Express.js",
   "version": "1.0.0",
   "main": "server.js",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/comp426-2022-spring/a03-jiangzc210.git"
