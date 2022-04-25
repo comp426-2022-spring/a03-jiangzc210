@@ -10,6 +10,9 @@ const server = app.listen(HTTP_PORT, () => {
     console.log('App listening on port %PORT%'.replace('%PORT%',HTTP_PORT))
 });
 
+//import coin modules
+import {coinFlip, coinFlips, countFlips} from './modules/coin.mjs';
+
 
 // Default response for any other request
 app.use(function(req, res){
@@ -24,6 +27,10 @@ app.get('/app/', (req, res) => {
     res.statusMessage = 'OK';
     res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
     res.end(res.statusCode+ ' ' +res.statusMessage)
+});
+
+app.get('/app/flip/', (req, res) => {
+	res.json({flip:coinFlip()});
 });
 
 
