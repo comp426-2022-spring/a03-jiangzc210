@@ -52,9 +52,13 @@ app.get('/app/', (req, res) => {
 });
 
 app.get('/app/flip/', (req, res) => {
-	res.json({flip:coinFlip()});
+	res.json({'flip':coinFlip()});
 });
 
+app.get('/app/flips/:number', (req, res) => {
+	const flips = coinFlips(req.params.number);
+	res.json({'raw':flips, 'summary':countFlips(flips)});
+});
 // Default response for any other request
 app.use(function(req, res){
     res.status(404).send('404 NOT FOUND')
